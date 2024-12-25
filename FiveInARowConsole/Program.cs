@@ -1,17 +1,19 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
+using ConsoleWrite;
 
 namespace FiveInARowConsole
 {
     class Program
     {
         static readonly string version = "1.0.2.20240307";
+       static ConsoleWrite.Write cw = new();
         static void Main(string[] args)
         {
-            ConsoleWrite.def();
-            ConsoleWrite.ConsoleLocWrite("五子棋", -1, -1, ConsoleWrite.defBack, ConsoleWrite.defFore, true);
-            ConsoleWrite.ConsoleLocWrite("[开始]", -1, -1, ConsoleColor.Green, ConsoleColor.Black, true);
-            ConsoleWrite.ConsoleLocWrite("[关于]", -1, -1, ConsoleColor.White, ConsoleColor.Black, true);
+            cw.Def();
+            cw.ConsoleLocWrite("五子棋", -1, -1, cw.defBack, cw.defFore, true);
+            cw.ConsoleLocWrite("[开始]", -1, -1, ConsoleColor.Green, ConsoleColor.Black, true);
+            cw.ConsoleLocWrite("[关于]", -1, -1, ConsoleColor.White, ConsoleColor.Black, true);
             int buttonID = 1;
 
             while (true)
@@ -22,8 +24,8 @@ namespace FiveInARowConsole
                     switch (buttonID)
                     {
                         case 1:
-                            ConsoleWrite.ConsoleLocWrite("[开始]", 0, 1, ConsoleColor.White, ConsoleColor.Black, true);
-                            ConsoleWrite.ConsoleLocWrite("[关于]", 0, 2, ConsoleColor.Green, ConsoleColor.Black, true);
+                            cw.ConsoleLocWrite("[开始]", 1, 2, ConsoleColor.White, ConsoleColor.Black, true);
+                            cw.ConsoleLocWrite("[关于]", 1, 3, ConsoleColor.Green, ConsoleColor.Black, true);
                             buttonID = 2;
                             break;
                         case 2: break;
@@ -36,8 +38,8 @@ namespace FiveInARowConsole
                         case 1:
                             break;
                         case 2:
-                            ConsoleWrite.ConsoleLocWrite("[开始]", 0, 1, ConsoleColor.Green, ConsoleColor.Black, true);
-                            ConsoleWrite.ConsoleLocWrite("[关于]", 0, 2, ConsoleColor.White, ConsoleColor.Black, true);
+                            cw.ConsoleLocWrite("[开始]", 1, 2, ConsoleColor.Green, ConsoleColor.Black, true);
+                            cw.ConsoleLocWrite("[关于]", 1, 3, ConsoleColor.White, ConsoleColor.Black, true);
                             buttonID = 1;
                             break;
                     }
@@ -50,7 +52,7 @@ namespace FiveInARowConsole
                             goto play;
                         case 2:
                             Copyright cop=new Copyright();
-                            ConsoleWrite.setCursor(0, 4);
+                            cw.SetCursor(1, 5);
                             Console.WriteLine("五子棋命令行版:");
                             Console.WriteLine("版本:V{0}", version);
                             Console.WriteLine(cop.GetC());
@@ -61,7 +63,7 @@ namespace FiveInARowConsole
         play:;
 
             int[,] locationStatus = new int[15, 15];//表示各坐标的状态，0：无棋子；1：O棋子；2：X棋子
-            ConsoleWrite.def();
+            cw.Def();
 
             //Console.WriteLine(consLoc);
 
@@ -116,11 +118,11 @@ namespace FiveInARowConsole
                         outputStr.Append(headStr);
                         outputStr.Append(" ");
                     }
-                    ConsoleWrite.ConsoleLocWrite(outputStr.ToString(), -1, -1, ConsoleColor.Gray, ConsoleColor.Black, false);
+                    cw.ConsoleLocWrite(outputStr.ToString(), -1, -1, ConsoleColor.Gray, ConsoleColor.Black, false);
                     //Console.BackgroundColor = ConsoleColor.Gray;
                     //Console.ForegroundColor = ConsoleColor.Black;
                     //Console.Write(outputStr.ToString());
-                    ConsoleWrite.ConsoleLocWrite("", -1, -1, ConsoleWrite.defBack, ConsoleWrite.defFore, true);
+                    cw.ConsoleLocWrite("", -1,-1, cw.defBack, cw.defFore, true);
                     //Console.BackgroundColor = defBack;
                     //Console.ForegroundColor = defFore;
                     //Console.WriteLine("");
@@ -196,12 +198,12 @@ namespace FiveInARowConsole
 
                         }
                     }
-                    Console.BackgroundColor = ConsoleWrite.defBack;
-                    Console.ForegroundColor = ConsoleWrite.defFore;
+                    Console.BackgroundColor = cw.defBack;
+                    Console.ForegroundColor = cw.defFore;
                     Console.WriteLine("");
                 }
             }
-            ConsoleWrite.ConsoleLocWrite("五子棋-游戏开始", 1 + 2 * (15 + 2) + 1, 0, ConsoleWrite.defBack, ConsoleWrite.defFore, true);
+            cw.ConsoleLocWrite("五子棋-游戏开始", 1 + 2 * (15 + 2) + 1+1, 1, cw.defBack, cw.defFore, true);
             //Console.SetCursorPosition(2*(15 + 2), consTopLoc + 1);
             //Console.BackgroundColor = defBack;
             //Console.ForegroundColor = defFore;
@@ -217,14 +219,14 @@ namespace FiveInARowConsole
                 switch (playerID)
                 {
                     case 1:
-                        ConsoleWrite.ConsoleLocWrite("O", 1 + 2 * (15 + 2) + 1, 1, ConsoleColor.White, ConsoleColor.Blue, false);
+                        cw.ConsoleLocWrite("O", 1 + 2 * (15 + 2) + 1+1, 1+1, ConsoleColor.White, ConsoleColor.Blue, false);
                         break;
                     case 2:
-                        ConsoleWrite.ConsoleLocWrite("X", 1 + 2 * (15 + 2) + 1, 1, ConsoleColor.White, ConsoleColor.Red, false);
+                        cw.ConsoleLocWrite("X", 1 + 2 * (15 + 2) + 1+1, 1+1, ConsoleColor.White, ConsoleColor.Red, false);
                         break;
                 }
-                ConsoleWrite.ConsoleLocWrite("方出棋:               ", 1 + 2 * (15 + 2) + 1 + 1, 1, ConsoleWrite.defBack, ConsoleWrite.defFore, false);
-                ConsoleWrite.setCursor(1 + 2 * (15 + 2) + 1 + 1 + (2 + 3 * 2), 1);
+                cw.ConsoleLocWrite("方出棋:               ", 1 + 2 * (15 + 2) + 1 + 1+1, 1+1, cw.defBack, cw.defFore, false);
+                cw.SetCursor(1 + 2 * (15 + 2) + 1 + 1 + (2 + 3 * 2)+1, 1+1);
                 inputRead = Console.ReadLine()!;
                 if (inputRead == "")
                 {
@@ -538,16 +540,16 @@ namespace FiveInARowConsole
                         switch (playerID)
                         {
                             case 1:
-                                ConsoleWrite.ConsoleLocWrite("O", 2 + locationInt[0] * 2 - 1, locationInt[1], ConsoleColor.White, ConsoleColor.Blue, false);
+                                cw.ConsoleLocWrite("O", 2 + locationInt[0] * 2 - 1+1, locationInt[1]+1, ConsoleColor.White, ConsoleColor.Blue, false);
 
-                                ConsoleWrite.ConsoleLocWrite("O", 1 + 2 * (15 + 2) + 1, 0, ConsoleColor.White, ConsoleColor.Blue, false);
-                                ConsoleWrite.ConsoleLocWrite("方已出棋：(" + locationString[0] + "," + locationString[1] + ")     ", 1 + 2 * (15 + 2) + 1 + 1, 0, ConsoleWrite.defBack, ConsoleWrite.defFore, false);
+                                cw.ConsoleLocWrite("O", 1 + 2 * (15 + 2) + 1+1, 0+1, ConsoleColor.White, ConsoleColor.Blue, false);
+                                cw.ConsoleLocWrite("方已出棋：(" + locationString[0] + "," + locationString[1] + ")     ", 1 + 2 * (15 + 2) + 1 + 1+1, 0+1, cw.defBack, cw.defFore, false);
                                 break;
                             case 2:
-                                ConsoleWrite.ConsoleLocWrite("X", 2 + locationInt[0] * 2 - 1, locationInt[1], ConsoleColor.White, ConsoleColor.Red, false);
+                                cw.ConsoleLocWrite("X", 2 + locationInt[0] * 2 - 1+1, locationInt[1]+1, ConsoleColor.White, ConsoleColor.Red, false);
 
-                                ConsoleWrite.ConsoleLocWrite("X", 1 + 2 * (15 + 2) + 1, 0, ConsoleColor.White, ConsoleColor.Red, false);
-                                ConsoleWrite.ConsoleLocWrite("方已出棋：(" + locationString[0] + "," + locationString[1] + ")     ", 1 + 2 * (15 + 2) + 1 + 1, 0, ConsoleWrite.defBack, ConsoleWrite.defFore, false);
+                                cw.ConsoleLocWrite("X", 1 + 2 * (15 + 2) + 1+1, 0+1, ConsoleColor.White, ConsoleColor.Red, false);
+                                cw.ConsoleLocWrite("方已出棋：(" + locationString[0] + "," + locationString[1] + ")     ", 1 + 2 * (15 + 2) + 1 + 1+1, 0+1, cw.defBack, cw.defFore, false);
                                 break;
                         }
                     }
@@ -568,10 +570,10 @@ namespace FiveInARowConsole
                     switch (againString)
                     {
                         case "locationError":
-                            ConsoleWrite.ConsoleLocWrite("棋盘坐标错误，请重新输入", 1 + 2 * (15 + 2) + 1, 2, ConsoleWrite.defBack, ConsoleColor.DarkRed, false);
+                            cw.ConsoleLocWrite("棋盘坐标错误，请重新输入", 1 + 2 * (15 + 2) + 1+1, 2+1, cw.defBack, ConsoleColor.DarkRed, false);
                             break;
                         case "locationNotNull":
-                            ConsoleWrite.ConsoleLocWrite("棋盘坐标中已经存在棋子，请重新输入", 1 + 2 * (15 + 2) + 1, 2, ConsoleWrite.defBack, ConsoleColor.DarkRed, false);
+                            cw.ConsoleLocWrite("棋盘坐标中已经存在棋子，请重新输入", 1 + 2 * (15 + 2) + 1+1, 2+1, cw.defBack, ConsoleColor.DarkRed, false);
                             break;
                     }
                     againString = "";
@@ -585,7 +587,7 @@ namespace FiveInARowConsole
                         case 2:
                             playerID = 1; break;
                     }
-                    ConsoleWrite.ConsoleLocWrite("                                        ", 1 + 2 * (15 + 2) + 1, 2, ConsoleWrite.defBack, ConsoleWrite.defFore, false);
+                    cw.ConsoleLocWrite("                                        ", 1 + 2 * (15 + 2) + 1+1, 2+1, cw.defBack, cw.defFore, false);
                 }
             }
         gameOver:;
@@ -611,9 +613,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else
@@ -637,9 +639,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else
@@ -663,9 +665,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else
@@ -689,9 +691,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else
@@ -715,9 +717,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else
@@ -741,9 +743,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else
@@ -767,9 +769,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else { break; }
@@ -790,9 +792,9 @@ namespace FiveInARowConsole
                                 switch (gameOverDate[3])
                                 {
                                     case 1:
-                                        ConsoleWrite.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Blue, false); break;
+                                        cw.ConsoleLocWrite("O", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Blue, false); break;
                                     case 2:
-                                        ConsoleWrite.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1, tempLoc[1], ConsoleColor.Green, ConsoleColor.Red, false); break;
+                                        cw.ConsoleLocWrite("X", 2 + tempLoc[0] * 2 - 1+1, tempLoc[1]+1, ConsoleColor.Green, ConsoleColor.Red, false); break;
                                 }
                             }
                             else { break; }
@@ -800,21 +802,21 @@ namespace FiveInARowConsole
                     }
                 }
                 #endregion
-                ConsoleWrite.ConsoleLocWrite("游戏结束！", 1 + 2 * (15 + 2) + 1, 3, ConsoleWrite.defBack, ConsoleWrite.defFore, true);
+                cw.ConsoleLocWrite("游戏结束！", 1 + 2 * (15 + 2) + 1+1, 3+1, cw.defBack, cw.defFore, true);
                 switch (gameOverDate[3])
                 {
                     case 1:
-                        ConsoleWrite.ConsoleLocWrite("O", 1 + 2 * (15 + 2) + 1, 4, ConsoleColor.White, ConsoleColor.Blue, false); break;
+                        cw.ConsoleLocWrite("O", 1 + 2 * (15 + 2) + 1+1, 4+1, ConsoleColor.White, ConsoleColor.Blue, false); break;
                     case 2:
-                        ConsoleWrite.ConsoleLocWrite("X", 1 + 2 * (15 + 2) + 1, 4, ConsoleColor.White, ConsoleColor.Red, false); break;
+                        cw.ConsoleLocWrite("X", 1 + 2 * (15 + 2) + 1+1, 4+1, ConsoleColor.White, ConsoleColor.Red, false); break;
                 }
-                ConsoleWrite.ConsoleLocWrite("方胜利", 1 + 2 * (15 + 2) + 1 + 1, 4, ConsoleWrite.defBack, ConsoleWrite.defFore, true);
+                cw.ConsoleLocWrite("方胜利", 1 + 2 * (15 + 2) + 1 + 1+1, 4+1, cw.defBack, cw.defFore, true);
 
-                ConsoleWrite.setCursor(0, 17);
+               cw.SetCursor(1, 18);
             }
         }
 
-        static class ConsoleWrite
+       /* static class ConsoleWrite
         {
             static private int consTop;
             static private int consLeft;
@@ -853,7 +855,7 @@ namespace FiveInARowConsole
                 defBack = Console.BackgroundColor;
                 defFore = Console.ForegroundColor;
             }
-        }
+        }*/
     }
 }
 
